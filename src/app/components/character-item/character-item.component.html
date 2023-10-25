@@ -1,8 +1,30 @@
 <div class="card">
-    <img [src]="getCharacterImage()" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">{{character.name}}</h5>
-      <p class="card-text"></p>
-      <button>Info</button>
-    </div>
+  <img [src]="getCharacterImage()" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{character.name}}</h5>
+    <p class="card-text"></p>
+    <button (click)="open(characterModal)">Info</button>
+  </div>
 </div>
+
+<ng-template #characterModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{character.name}}</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <img [src]="getCharacterImage()" alt="">
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="dateOfBirth">Date of birth</label>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(characterModal)">Launch demo modal</button>
